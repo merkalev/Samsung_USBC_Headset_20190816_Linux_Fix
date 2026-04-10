@@ -1,10 +1,18 @@
 # Samsung_USBC_Headset_20190816_Linux_Fix
-Microphone fix for the Samsung_USBC_Headset_20190816 on Linux that uses PipeWire.
 
-# How to apply fix
-Step 1: Run ``nano ~/.config/wireplumber/main.lua.d/50-usb-audio.lua``
-Step 2: Paste in 
+Fixes microphone issues for the Samsung USB-C headset on Linux (PipeWire).
+
+## How to apply
+
+**1. Open config file**
+
+```bash
+nano ~/.config/wireplumber/main.lua.d/50-usb-audio.lua
 ```
+
+**2. Paste this**
+
+```lua
 alsa_monitor.rules = alsa_monitor.rules or {}
 
 table.insert(alsa_monitor.rules, {
@@ -31,4 +39,11 @@ table.insert(alsa_monitor.rules, {
   },
 })
 ```
-Step 3: Run ``systemctl --user restart wireplumber pipewire pipewire-pulse`` and the microphone will be fixed.
+
+**3. Restart services**
+
+```bash
+systemctl --user restart wireplumber pipewire pipewire-pulse
+```
+
+Enjoy!
